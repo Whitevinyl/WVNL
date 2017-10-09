@@ -1,0 +1,711 @@
+
+/*
+------------------------------------------------------------
+ BASIC
+------------------------------------------------------------
+*/
+
+html {
+    width: 100%;
+    height: 100%;
+    /*overflow-x: hidden;*/
+}
+
+body {
+    background-color: #1a0e1a;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    text-rendering:optimizeLegibility;
+
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+svg {
+    fill: currentColor;
+}
+
+
+img {
+    max-width:100%;
+    vertical-align:bottom;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+canvas {
+    display: block;
+}
+
+
+*.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+p {
+    padding: 0;
+    margin: 0 0 60px 0;
+}
+
+/*
+------------------------------------------------------------
+ STYLES
+------------------------------------------------------------
+*/
+
+.bg {
+    background-color: #1a0e1a;
+}
+
+.foreground {
+    color: #ffffff;
+}
+
+.highlight1 {
+    color: #00e2ba;
+}
+
+.highlight2 {
+    color: #dd55ff;
+}
+
+
+.header, h3, .number, .number2 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 44px;
+    line-height: 36px;
+}
+
+.mid, .launch {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.main, p {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.sub {
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.08em;
+}
+
+.caps, h3, .launch {
+    text-transform: uppercase;
+}
+
+
+/*
+------------------------------------------------------------
+ STRUCTURE
+------------------------------------------------------------
+*/
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+#frame {
+    width: 100%;
+    height: 15px;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#main {
+    width: 76%;
+    max-width: 1064px;
+    margin: 0 auto;
+    padding-bottom: 150px;
+}
+
+#topMenu, .menuBlock {
+    width: 76%;
+    max-width: 1064px;
+    margin: 0 auto;
+}
+
+.menuBlock {
+    border-top: 1px solid;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+}
+.menuBlock a {
+    margin: 5px 0;
+    display: inline-block;
+}
+
+#UI {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* LOGO */
+#logo {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    top: 20px;
+    left: 6%;
+    transform: translate(-50%, 0);
+    z-index: 100;
+}
+
+#navigator {
+    position: fixed;
+    top: 50%;
+    right: 45px;
+    display: inline-block;
+    z-index: 90;
+
+    -ms-transform: translate(0, -50%); /* IE 9 */
+    -webkit-transform: translate(0, -50%); /* Chrome, Safari, Opera */
+    transform: translate(0, -50%);
+}
+
+
+/*
+------------------------------------------------------------
+ TOP MENU
+------------------------------------------------------------
+*/
+
+#topMenu {
+    position: relative;
+    height: 80px;
+}
+
+#topMenuButton {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+}
+
+#topMenuButton:hover {
+    cursor: pointer;
+}
+
+.topMenuText {
+    float: left;
+    display: inline-block;
+    line-height: 80px;
+    padding: 0;
+    margin: 0;
+}
+
+.topMenuIcon {
+    float: left;
+    display: inline-block;
+    height: 44px;
+    width: 44px;
+    overflow: hidden;
+    margin-top: 18px;
+}
+
+#topMenuButton:hover .menuIconA {
+    height: 0;
+    opacity: 0.2;
+}
+#topMenuButton:hover .menuIconB {
+    height: 44px;
+    opacity: 1;
+}
+
+.menuIconA {
+    height: 44px;
+    width: 44px;
+    position: relative;
+    display: block;
+    opacity: 1;
+
+    -webkit-transition: height 0.2s, opacity 0.2s;
+    -moz-transition: height 0.2s, opacity 0.2s;
+    transition: height 0.2s, opacity 0.2s;
+
+}
+.menuIconB {
+    height: 0;
+    width: 44px;
+    position: relative;
+    display: block;
+    opacity: 0.2;
+
+    -webkit-transition: height 0.2s, opacity 0.2s;
+    -moz-transition: height 0.2s, opacity 0.2s;
+    transition: height 0.2s, opacity 0.2s;
+}
+
+/*
+------------------------------------------------------------
+ MENU
+------------------------------------------------------------
+*/
+
+#menu {
+    position: fixed;
+    top: 80px;
+    width: 100%;
+    height: 0;
+    z-index: 100;
+    overflow: hidden;
+
+    -webkit-transition: height 0.18s;
+    -moz-transition: height 0.18s;
+    transition: height 0.18s;
+}
+
+.openMenu {
+    -webkit-transition: height 0.7s !important;
+    -moz-transition: height 0.7s !important;
+    transition: height 0.7s !important;
+}
+
+.menuBlock a {
+    position: relative;
+    padding-left: 0;
+    -webkit-transition: padding-left 0.2s;
+    -moz-transition: padding-left 0.2s;
+    transition: padding-left 0.2s;
+}
+
+.menuBlock a:hover {
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+a:hover .linkLine {
+    width: 30px;
+}
+
+.linkLine {
+    position: absolute;
+    left: -30px;
+    height:20px;
+    width: 0;
+    border-bottom: 1px solid;
+    overflow: hidden;
+
+    -webkit-transition: width 0.2s;
+    -moz-transition: width 0.2s;
+    transition: width 0.2s;
+}
+
+/*
+------------------------------------------------------------
+ ARTICLE
+------------------------------------------------------------
+*/
+
+body {
+    opacity: 0;
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    transition: opacity 2s;
+}
+
+article {
+    clear: both;
+    width: 100%;
+    position: relative;
+    padding-top: 180px;
+    margin-bottom: 30px;
+}
+
+article h3 {
+    margin: 0 0 45px 0;
+}
+
+article p, .rightCol {
+    float: right;
+    margin: 0;
+    width: calc(50% - 20px);
+    padding: 0;
+}
+
+.marginAfter {
+    margin-bottom: 40px;
+}
+
+.cols {
+    padding: 10px 0 45px 0;
+    overflow: hidden;
+    clear: both;
+}
+
+.left {
+    width: calc(50% - 20px);
+    float: left;
+}
+
+.features {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 25%;
+    z-index: 2;
+}
+
+.block {
+    position: relative;
+    width: 100%;
+    clear: both;
+    overflow: hidden;
+}
+
+
+
+.inline {
+    padding: 2px 0;
+}
+
+p .inline {
+    border-bottom: 1px solid;
+}
+
+.inline:hover {
+    text-decoration: none;
+    border-bottom: 1px solid;
+}
+
+.divide {
+    width: 1px;
+    border-left: 1px solid;
+    margin: 0 10px;
+    position: relative;
+    top: 0.1em;
+}
+
+
+.number2 {
+    display: inline-block;
+    position: absolute;
+    top: -60px;
+    left: 0;
+    -ms-transform-origin: 100% 0;
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+
+    -ms-transform: translate(-100%, 0);
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
+
+    text-align: left;
+    line-height: 60px;
+    width: 12vw;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+.rule {
+    display: block;
+    height: 3px;
+    width: 100%;
+}
+.number2 .no {
+    width: 100%;
+}
+.number2 .total {
+    text-align: right;
+    width: 100%;
+}
+
+
+.gallery {
+    position: relative;
+    clear: both;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.double {
+    overflow: hidden;
+}
+
+.double img {
+    width: calc(50% - 20px);
+}
+.double img:nth-child(1) {
+    float: left;
+}
+.double img:nth-child(2) {
+    float: right;
+}
+
+
+
+/* LAUNCH */
+.launch {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.launch:hover {
+}
+
+.launchText {
+    float: left;
+    display: inline-block;
+    line-height: 54px;
+    margin-right: 10px;
+}
+
+.launchIcon {
+    float: left;
+    display: inline-block;
+    height: 54px;
+    width: 44px;
+    overflow: hidden;
+}
+
+.launch:hover .launchIconA {
+    height: 0;
+    opacity: 0.2;
+}
+.launch:hover .launchIconB {
+    height: 44px;
+    opacity: 1;
+    padding-top: 5px;
+}
+
+.launchIconA {
+    height: 44px;
+    width: 44px;
+    position: relative;
+    display: block;
+    opacity: 1;
+
+    -webkit-transition: height 0.2s, opacity 0.2s;
+    -moz-transition: height 0.2s, opacity 0.2s;
+    transition: height 0.2s, opacity 0.2s;
+}
+
+.launchIconB {
+    height: 0;
+    width: 44px;
+    position: relative;
+    display: block;
+    opacity: 0.2;
+    padding: 0 0 5px 0;
+
+    -webkit-transition: height 0.2s, opacity 0.2s, padding-top 0.2s;
+    -moz-transition: height 0.2s, opacity 0.2s, padding-top 0.2s;
+    transition: height 0.2s, opacity 0.2s, padding-top 0.2s;
+}
+
+
+.tagText {
+    text-transform: capitalize;
+    max-width: 230px;
+    margin-bottom: 30px;
+}
+
+
+#aboutImage {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+
+/*
+------------------------------------------------------------
+ NAVIGATOR
+------------------------------------------------------------
+*/
+
+#navigator {
+}
+
+.navLink {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+}
+
+.hello .navLinkBox {
+    opacity: 1;
+}
+
+.navLink:hover .navTag {
+    max-width: 200px;
+    padding: 0 10px 0 10px;
+}
+
+@media (hover: none) {
+   .navLink:link .navTag, .navLink:link .navTag {
+       max-width: 0;
+       padding: 0;
+   }
+}
+
+.navLinkBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+
+.navTag {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    overflow: hidden;
+    padding: 0;
+    line-height: 30px;
+    height: 30px;
+    max-width: 0;
+    white-space: nowrap;
+
+    -webkit-transition: max-width 0.35s, padding 0.35s;
+    -moz-transition: max-width 0.35s, padding 0.35s;
+    transition: max-width 0.35s, padding 0.35s;
+}
+
+@media (min-width: 1400px) {
+    #logo {
+        left: calc((100vw - 1064px) / 4);
+    }
+    .number2 {
+        width: calc((100vw - 1064px) / 2);
+    }
+
+}
+
+@media (max-width: 1050px) {
+    #logo {
+        width: 50px;
+        height: 50px;
+        top: 20px;
+    }
+    #navigator {
+        right: 40px;
+    }
+    article p, .rightCol {
+        width: calc(66.66% - 20px);
+    }
+    .tagText {
+        max-width: 200px;
+    }
+    .number2 {
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 50px;
+        top: -50px;
+        padding: 0 calc(3px + 2.5vw);
+    }
+    .left, .features {
+        width: calc(33.33% - 20px);
+    }
+}
+
+@media (max-width: 700px) {
+    #logo {
+        width: 30px;
+        height: 30px;
+        top: 23px;
+        /*left: 9px;*/
+    }
+    .left, .half, .features {
+        width: 100%;
+    }
+    article p, .rightCol {
+        width: 100%;
+        float: left;
+    }
+    #navigator {
+        display: none;
+    }
+    .number2 {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 40px;
+        top: -40px;
+    }
+    .toolIcon {
+        left: -35px;
+    }
+}
+
+@media (max-width: 440px) {
+    #logo, .number, .number2, .toolIcon {
+        display: none;
+    }
+    #main, #topMenu, .menuBlock {
+        width: 80%;
+    }
+    .gallery img {
+        margin-bottom: 10px;
+    }
+    .double img {
+        width: calc(50% - 5px);
+    }
+}

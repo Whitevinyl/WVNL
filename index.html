@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="pinterest" content="nohover">
+
+    <title>wvnl</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="js/lib/tween.min.js"></script>
+    <script type="text/javascript" src="js/lib/perlin-simplex.js"></script>
+    <script type="text/javascript" src="js/lib/tombola.js"></script>
+    <script type="text/javascript" src="js/lib/colorflex.js"></script>
+    <script type="text/javascript" src="js/lib/jqueryEasing.js"></script>
+
+
+    <script type="text/javascript" src="js/_OBJECTS.js"></script>
+    <script type="text/javascript" src="js/_MAIN.js"></script>
+    <script type="text/javascript" src="js/_METRICS.js"></script>
+
+    <script type="text/javascript" src="js/retinaImages.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/navigator.js"></script>
+    <script type="text/javascript" src="js/logoAnimate.js"></script>
+    <script type="text/javascript" src="js/scrollControl.js"></script>
+    <script type="text/javascript" src="js/palette.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600|Titillium+Web:300,i300,i400,400,i600" rel="stylesheet">
+
+    <link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<body onresize='resize()'>
+
+<div id='background' class='bg'></div>
+
+
+<div id='menu' class='bg foreground mid'>
+    <div class='menuBlock'>
+        <a class='menuLink' href='#p1'><div class="linkLine sub">01</div>Projects</a>
+        <a class='menuLink' href='#about'><div class="linkLine sub">02</div>About</a>
+        <a class='menuLink' href='http://whitevinyldesign.com/experiments'><div class="linkLine sub">03</div>Experiments</a>
+    </div>
+    <div class='menuBlock'>
+        <a class='menuLink' href='http://twitter.com/whitevinyluk' target='_blank'><div class="linkLine sub">01</div>Twitter</a>
+        <a class='menuLink' href='http://facebook.com/whitevinyldesign' target='_blank'><div class="linkLine sub">02</div>Facebook</a>
+        <a class='menuLink' href='http://github.com/whitevinyl' target='_blank'><div class="linkLine sub">03</div>Github</a>
+        <a class='menuLink' href='http://pinterest.com/luketwyman' target='_blank'><div class="linkLine sub">04</div>Pinterest</a>
+    </div>
+
+</div>
+<header class='bg'>
+    <div id='topMenu'>
+        <div id="topMenuButton">
+            <div class="topMenuText mid foreground">Menu</div>
+
+            <div class="topMenuIcon">
+                <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="menuIconB  highlight2" >
+                    <path id="arrow1" d="M34 44 L50 60 L66 44" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                </SVG>
+
+                <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="menuIconA  highlight1" >
+                    <path id="arrow2" d="M34 44 L50 60 L66 44" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                </SVG>
+            </div>
+        </div>
+
+
+        <!--<div id='experiments' class='foreground'>
+            <div id='experimentIcon'>
+                <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                    <circle cx="50" cy="50" r="46" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle>
+                    <path d="M40 32 L30 32 L30 68 L40 68 M60 32 L70 32 L70 68 L60 68" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                </SVG>
+            </div>
+        </div>-->
+    </div>
+
+
+</header>
+
+<div id='frame' class='bg'></div>
+
+
+<div id='logo' class='foreground'>
+    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+        <defs>
+            <clipPath id='logoMaskPath'>
+                <path id='logoMask' d='M100 0  L0 0  L 0 100  L100 100  Z' fill='none'></path>
+            </clipPath>
+        </defs>
+        <path id='logoPath' d='M16.75 18.7  L2.5 18.7  L 41.6 98.5  L55.9 98.5  L16.75 18.7 M55.9 98.5  L55.9 43.44  M44.06 18.7  L44.06 73.76 M44.06 18.7  L83.25 98.5  L97.5 98.5  L 58.31 18.7  L44.06 18.7' vector-effect='non-scaling-stroke' stroke='currentColor' stroke-width='1.1' fill='none' clip-path='url(#logoMaskPath)'></path>
+    </SVG>
+</div>
+
+
+<div id='navigator' class="foreground">
+    <a id='nav1' class='navLink'>
+        <SVG viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="2" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle></SVG>
+        <SVG  class='navLinkBox' viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 25 L75 50 L50 75 L25 50 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path></SVG>
+        <div class='navTag bg sub'>Yume</div>
+    </a>
+    <a id='nav2' class='navLink'>
+        <SVG viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="2" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle></SVG>
+        <SVG  class='navLinkBox' viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 25 L75 50 L50 75 L25 50 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path></SVG>
+        <div class='navTag bg sub'>ARP</div>
+    </a>
+    <a id='nav3' class='navLink'>
+        <SVG viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="2" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle></SVG>
+        <SVG  class='navLinkBox' viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 25 L75 50 L50 75 L25 50 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path></SVG>
+        <div class='navTag bg sub'>SolarBeat</div>
+    </a>
+    <a id='nav4' class='navLink'>
+        <SVG viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="2" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle></SVG>
+        <SVG  class='navLinkBox' viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 25 L75 50 L50 75 L25 50 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path></SVG>
+        <div class='navTag bg sub'>Petrels/Bolt</div>
+    </a>
+    <a id='nav5' class='navLink'>
+        <SVG viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="2" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle></SVG>
+        <SVG  class='navLinkBox' viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 25 L75 50 L50 75 L25 50 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path></SVG>
+        <div class='navTag bg sub'>BlokDust</div>
+    </a>
+    <a id='nav6' class='navLink'>
+        <SVG viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="2" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle></SVG>
+        <SVG  class='navLinkBox' viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 25 L75 50 L50 75 L25 50 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path></SVG>
+        <div class='navTag bg sub'>Flora Drift</div>
+    </a>
+    <a id='nav7' class='navLink'>
+        <SVG viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="2" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle></SVG>
+        <SVG  class='navLinkBox' viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 25 L75 50 L50 75 L25 50 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path></SVG>
+        <div class='navTag bg sub'>Here is Today</div>
+    </a>
+    <a id='nav8' class='navLink'>
+        <SVG viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="2" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle></SVG>
+        <SVG  class='navLinkBox' viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 25 L75 50 L50 75 L25 50 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path></SVG>
+        <div class='navTag bg sub'>World Food Clock</div>
+    </a>
+    <a id='nav9' class='navLink'>
+        <SVG viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="2" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle></SVG>
+        <SVG  class='navLinkBox' viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50 25 L75 50 L50 75 L25 50 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path></SVG>
+        <div class='navTag bg sub'>Kollektiv</div>
+    </a>
+</div>
+
+
+
+<div id='main' class='foreground'>
+
+    <article>
+        <h3>Yume</h3>
+
+        <div class='cols'>
+
+            <div class='left'>
+                <div class="tagText sub">Web, Music, Visual, Exploration, Web Audio API, THREE.js</div>
+
+                <a class="launch" href='http://unseen-music.com/yume' target='_blank'>
+                    <div class="launchText">Visit</div>
+
+                    <div class="launchIcon">
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconB  highlight2" >
+                            <path d="M52 2 L98 48 Q100 50 98 52 L52 98 Q50 100 48 98 L2 52 Q0 50 2 48 L48 2 Q50 0 52 2 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconA  highlight1" >
+                            <circle cx="50" cy="50" r="46" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+                    </div>
+                </a>
+
+            </div>
+
+            <p>YUME is an interactive web experience created to promote the album 'Yume' by ambient artist Helios. Floating rock shards become tactile music controllers, which also manipulate the environment. Different scenes can be freely explored, each one with a different feel/sound.</p>
+
+        </div>
+
+
+        <div class='gallery'>
+            <div class='number2'>
+                <div class='no'>01</div>
+                <div class='rule'>
+                    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                        <path d="M0 1 L100 1" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                    </SVG>
+                </div>
+                <div class='total'>09</div>
+            </div>
+            <img src="img/yume/1.jpg" data-r='2'>
+            <img src="img/yume/2.jpg" data-r='2'>
+            <img src="img/yume/3.jpg" data-r='2'>
+        </div>
+    </article>
+
+
+    <article>
+        <h3>ARP</h3>
+
+        <div class='cols'>
+
+            <div class='left'>
+                <div class="tagText sub">Bot, Generative, Audio, Visual, Art, Narrative, Node.js</div>
+
+                <a class="launch" href='http://twitter.com/arpobservatory' target='_blank'>
+                    <div class="launchText">Visit</div>
+
+                    <div class="launchIcon">
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconB  highlight2" >
+                            <path d="M52 2 L98 48 Q100 50 98 52 L52 98 Q50 100 48 98 L2 52 Q0 50 2 48 L48 2 Q50 0 52 2 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconA  highlight1" >
+                            <circle cx="50" cy="50" r="46" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+                    </div>
+                </a>
+
+            </div>
+
+            <p>ARP is a fictional radio telescope observatory. It’s a Twitter & SoundCloud bot which procedurally generates audio, data visualisations, and the tweets (and occasionally long-exposure photography) of an astronomer/research scientist who works at ARP, who is obsessive over the audio messages, and who runs the observatory’s Twitter account.</p>
+
+        </div>
+
+        <div class='gallery'>
+            <div class='number2'>
+                <div class='no'>02</div>
+                <div class='rule'>
+                    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                        <path d="M0 1 L100 1" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                    </SVG>
+                </div>
+                <div class='total'>09</div>
+            </div>
+            <img src="img/arp/1.jpg" data-r='2'>
+            <div class='double'>
+                <img src="img/arp/2.jpg">
+                <img src="img/arp/3.jpg">
+            </div>
+
+        </div>
+    </article>
+
+
+    <article>
+        <h3>Solar&shy;Beat</h3>
+
+        <div class='cols'>
+
+            <div class='left'>
+                <div class="tagText sub">Web, Audio, Data, Science, Art, Web Audio API</div>
+
+                <a class="launch" href='http://whitevinyldesign.com/solarbeat' target='_blank'>
+                    <div class="launchText">Visit</div>
+                    <div class="launchIcon">
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconB  highlight2" >
+                            <path d="M52 2 L98 48 Q100 50 98 52 L52 98 Q50 100 48 98 L2 52 Q0 50 2 48 L48 2 Q50 0 52 2 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconA  highlight1" >
+                            <circle cx="50" cy="50" r="46" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+                    </div>
+                </a>
+
+            </div>
+
+            <p>SOLARBEAT is an interactive data visualisation (and sonification). It uses the real orbital frequencies of the major bodies of our solar system, and uses them to generate an endless melody as each planet plays a note with each orbit. Visitors can adjust the speed of time, as well as change audio effects and which musical scale is used.</p>
+
+        </div>
+
+        <div class='gallery'>
+            <div class='number2'>
+                <div class='no'>03</div>
+                <div class='rule'>
+                    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                        <path d="M0 1 L100 1" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                    </SVG>
+                </div>
+                <div class='total'>09</div>
+            </div>
+            <img src="img/solarbeat/1.jpg" data-r='2'>
+            <img src="img/solarbeat/2.jpg" data-r='2'>
+        </div>
+    </article>
+
+
+    <article>
+        <h3>Petrels / Bolt</h3>
+
+        <div class='cols'>
+
+            <div class='left'>
+                <div class="tagText sub">Illustration, Print, Artwork, Graphic, Packaging</div>
+
+            </div>
+
+            <p>Vinyl packaging artwork and design for this split 10-inch featuring Petrels and [ B O L T ]. Released on <a class='inline' href='http://www.aentitainment.com' target='_blank'>Aentitainment</a>.</p>
+
+        </div>
+
+        <div class='gallery'>
+            <div class='number2'>
+                <div class='no'>04</div>
+                <div class='rule'>
+                    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                        <path d="M0 1 L100 1" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                    </SVG>
+                </div>
+                <div class='total'>09</div>
+            </div>
+            <img src="img/petbolt/1.jpg" data-r='2'>
+            <img src="img/petbolt/2.jpg" data-r='2'>
+            <img src="img/petbolt/3.jpg" data-r='2'>
+
+        </div>
+    </article>
+
+
+    <article>
+        <h3>Blok&shy;Dust</h3>
+
+        <div class='cols'>
+
+            <div class='left'>
+                <div class="tagText sub">Web, Audio, Interaction, Synth, Web Audio API</div>
+
+                <a class="launch" href='http://blokdust.com' target='_blank'>
+                    <div class="launchText">Visit</div>
+                    <div class="launchIcon">
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconB  highlight2" >
+                            <path d="M52 2 L98 48 Q100 50 98 52 L52 98 Q50 100 48 98 L2 52 Q0 50 2 48 L48 2 Q50 0 52 2 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconA  highlight1" >
+                            <circle cx="50" cy="50" r="46" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+                    </div>
+                </a>
+
+            </div>
+
+            <p>BLOKDUST is a web-based environment for music, instrument & sound creation. It allows users create music, synths and sound-art right in the browser, in an intuitive visual way. Once you’ve made something cool with it, you can generate a unique URL to share with your friends.</p>
+
+        </div>
+
+        <div class='gallery'>
+            <div class='number2'>
+                <div class='no'>05</div>
+                <div class='rule'>
+                    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                        <path d="M0 1 L100 1" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                    </SVG>
+                </div>
+                <div class='total'>09</div>
+            </div>
+            <img src="img/blokdust/1.jpg" data-r='2'>
+            <div class='double'>
+                <img src="img/blokdust/2.jpg" data-r='2'>
+                <img src="img/blokdust/3.jpg" data-r='2'>
+            </div>
+
+        </div>
+    </article>
+
+
+    <article>
+        <h3>Flora Drift</h3>
+
+        <div class='cols'>
+
+            <div class='left'>
+                <div class="tagText sub">Web, Audio, Interaction, Generative, Art, Web Audio API</div>
+
+                <a class="launch" href='http://whitevinyldesign.com/floradrift' target='_blank'>
+                    <div class="launchText">Visit</div>
+                    <div class="launchIcon">
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconB  highlight2" >
+                            <path d="M52 2 L98 48 Q100 50 98 52 L52 98 Q50 100 48 98 L2 52 Q0 50 2 48 L48 2 Q50 0 52 2 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconA  highlight1" >
+                            <circle cx="50" cy="50" r="46" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+                    </div>
+                </a>
+
+            </div>
+
+            <p>FLORA DRIFT is an interactive web experience which procedurally generates music on the fly, as well as generating an animated jungle/garden scene every 2 bars of music. Visitors can join in with a couple of inbuilt synth instruments - the Space Pan and Lazer Harp.</p>
+
+        </div>
+
+        <div class='gallery'>
+            <div class='number2'>
+                <div class='no'>06</div>
+                <div class='rule'>
+                    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                        <path d="M0 1 L100 1" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                    </SVG>
+                </div>
+                <div class='total'>09</div>
+            </div>
+            <img src="img/floradrift/1.jpg" data-r='2'>
+            <img src="img/floradrift/2.jpg" data-r='2'>
+            <div class='double'>
+                <img src="img/floradrift/3.jpg" data-r='2'>
+                <img src="img/floradrift/4.jpg" data-r='2'>
+            </div>
+
+        </div>
+    </article>
+
+
+
+    <article>
+        <h3>Here is Today</h3>
+
+        <div class='cols'>
+
+            <div class='left'>
+                <div class="tagText sub">Web, Visual, Data, Science, Art, Graphic, Geology</div>
+
+                <a class="launch" href='http://hereistoday.com' target='_blank'>
+                    <div class="launchText">Visit</div>
+                    <div class="launchIcon">
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconB  highlight2" >
+                            <path d="M52 2 L98 48 Q100 50 98 52 L52 98 Q50 100 48 98 L2 52 Q0 50 2 48 L48 2 Q50 0 52 2 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconA  highlight1" >
+                            <circle cx="50" cy="50" r="46" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+                    </div>
+                </a>
+
+            </div>
+
+            <p>HERE IS TODAY is an interactive data visualisation which takes a look at the span of all time since the universe began, and illustrates its vast scale, as well as our own small place within it - starting with today.</p>
+
+        </div>
+
+        <div class='gallery'>
+            <div class='number2'>
+                <div class='no'>07</div>
+                <div class='rule'>
+                    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                        <path d="M0 1 L100 1" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                    </SVG>
+                </div>
+                <div class='total'>09</div>
+            </div>
+            <img src="img/hereistoday/1.jpg" data-r='2'>
+            <img src="img/hereistoday/2.jpg" data-r='2'>
+            <div class='double'>
+                <img src="img/hereistoday/3.jpg" data-r='2'>
+                <img src="img/hereistoday/4.jpg" data-r='2'>
+            </div>
+
+        </div>
+    </article>
+
+
+
+    <article>
+        <h3>World Food Clock</h3>
+
+        <div class='cols'>
+
+            <div class='left'>
+                <div class="tagText sub">Web, Data, Visual, Science, Art, Graphic</div>
+
+                <a class="launch" href='http://worldfoodclock.com' target='_blank'>
+                    <div class="launchText">Visit</div>
+                    <div class="launchIcon">
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconB  highlight2" >
+                            <path d="M52 2 L98 48 Q100 50 98 52 L52 98 Q50 100 48 98 L2 52 Q0 50 2 48 L48 2 Q50 0 52 2 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+
+                        <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="launchIconA  highlight1" >
+                            <circle cx="50" cy="50" r="46" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle>
+                            <path d="M44 34 L60 50 L44 66" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                        </SVG>
+                    </div>
+                </a>
+
+            </div>
+
+            <p>WORLD FOOD CLOCK is an interactive data visualisation which demonstrates global food production and waste over time. Every second that passes, the visualisation updates to show how much food has been produced, consumed and wasted in the time that you've spent on the site.</p>
+
+        </div>
+
+        <div class='gallery'>
+            <div class='number2'>
+                <div class='no'>08</div>
+                <div class='rule'>
+                    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                        <path d="M0 1 L100 1" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                    </SVG>
+                </div>
+                <div class='total'>09</div>
+            </div>
+            <img src="img/worldfoodclock/2.jpg" data-r='2'>
+            <div class='double'>
+                <img src="img/worldfoodclock/1.jpg" data-r='2'>
+                <img src="img/worldfoodclock/3.jpg" data-r='2'>
+            </div>
+
+        </div>
+    </article>
+
+
+
+    <article>
+        <h3>Kollektiv</h3>
+
+        <div class='cols'>
+
+            <div class='left'>
+                <div class="tagText sub">Illustration, animation, graphic, art, loop, .gif</div>
+            </div>
+
+            <p>A series of looped animations and illustrations created for a visual interview. The images combine vectors, hand-drawn elements and real-world textures. See the full interview <a class='inline' href='http://www.kollektivgallery.com/artists/luke-twyman/' target='_blank'>here</a>.</p>
+
+        </div>
+
+        <div class='gallery'>
+            <div class='number2'>
+                <div class='no'>09</div>
+                <div class='rule'>
+                    <SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+                        <path d="M0 1 L100 1" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                    </SVG>
+                </div>
+                <div class='total'>09</div>
+            </div>
+            <div class='double'>
+                <img src="img/kollektiv/1.jpg">
+                <img src="img/kollektiv/2.gif">
+            </div>
+            <div class='double'>
+                <img src="img/kollektiv/3.gif">
+                <img src="img/kollektiv/5.gif">
+            </div>
+            <div class='double'>
+                <img src="img/kollektiv/4.jpg">
+                <img src="img/kollektiv/6.jpg">
+            </div>
+
+        </div>
+    </article>
+
+
+    <article id='about'>
+        <h3>Luke Twyman</h3>
+
+        <div class='cols'>
+
+            <div class='block marginAfter'>
+                <div class='left'>
+                    <div class="tagText sub">Design, code, graphics, audio, illustration</div>
+                </div>
+
+                <p>I'm a freelance creative designer & developer based in Brighton UK. Right now I’m mainly doing interactive music sites, data-visualisation, procedural generation & other experimental projects. Get in touch for work enquiries, or to say hello (I’m also up for collabs right now).</p>
+
+            </div>
+
+            <div class='block marginAfter'>
+
+                <div class='rightCol mid'>
+                    <a class='inline' href='mailto:info@whitevinyldesign.com' target='_blank'>info@whitevinyldesign.com</a><br />
+                    <a class='inline' href='http://twitter.com/whitevinyluk' target='_blank'>twitter</a><span class='divide'></span>
+                    <a class='inline' href='http://github.com/whitevinyl' target='_blank'>github</a><span class='divide'></span>
+                    <a class='inline' href='http://facebook.com/whitevinyldesign' target='_blank'>facebook</a><span class='divide'></span>
+                    <a class='inline' href='http://pinterest.com/luketwyman' target='_blank'>pinterest</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div id='aboutImage'>
+            <div class='features sub' >
+                My work has been featured by The Creators Project, Information is Beautiful, Creative Review, Design Week, .Net Mag, HUH Magazine, Creative Arts Journal, PopSci, Wired, BuzzFeed, The Washington Post, Radiolab, io9, NPR, Gizmodo and Fast Company.
+            </div>
+
+            <SVG viewBox="0 0 100 100" preserveAspectRatio="none" class="highlight2" >
+                <path d="M52 2 L98 48 Q100 50 98 52 L52 98 Q50 100 48 98 L2 52 Q0 50 2 48 L48 2 Q50 0 52 2 z" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+                <path d="M35 50 L45 40 L55 50 L65 40 M35 60 L45 50 L55 60 L65 50" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+            </SVG>
+        </div>
+
+    </article>
+
+</div>
+
+</body>
+</html>

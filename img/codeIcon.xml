@@ -1,0 +1,4 @@
+<SVG viewBox='0 0 100 100' preserveAspectRatio='none'>
+    <circle cx="50" cy="50" r="46" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></circle>
+    <path d="M40 32 L30 32 L30 68 L40 68 M60 32 L70 32 L70 68 L60 68" stroke="currentColor" vector-effect="non-scaling-stroke" stroke-width="1.1" fill="none"></path>
+</SVG>
